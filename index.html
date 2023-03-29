@@ -96,14 +96,15 @@
       // Focus to geocoder input
       geocoder.focus();
 
-      // Add Tangram scene layer
-      var layer = Tangram.leafletLayer({
-        scene: {
-          import: 'https://www.nextzen.org/carto/refill-style/11/refill-style.zip',
-          global: { sdk_api_key: 'JdkWeuDGTEOTlMZxuWl0nQ' }
-        },
-        attribution: 'Rendering by <a href="https://mapzen.com/products/tangram/">Tangram</a> | &copy; OSM contributors'
-      }).addTo(map);
+     // Define the URL template for the raster tiles
+     var tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+    // Create a tile layer object and add it to the map
+        var tiles = L.tileLayer(tileUrl, {
+       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+       maxZoom: 18,
+     }).addTo(map);
+
 
       // Adding a script block to post message to the parent container (think iframed demos)
       window.addEventListener('hashchange', function () {
