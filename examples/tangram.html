@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Using geocoding plugin with Tangram.</title>
+  <title>Using raster tiles with Leaflet.</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
   <script src="assets/modernizr.js"></script>
@@ -13,13 +13,6 @@
   <!-- Load leaflet-hash -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-hash/0.2.1/leaflet-hash.min.js"></script>
 
-  <!-- Load geocoding plugin after Leaflet -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.min.js"></script>
-
-  <!-- Load Tangram -->
-  <script src="https://mapzen.com/tangram/tangram.min.js"></script>
-
   <link rel="stylesheet" href="assets/examples.css">
 </head>
 <body>
@@ -27,20 +20,12 @@
   <div id="map"></div>
   <script>
     // Create a basic Leaflet map (with URL hash enabled)
-    var map = L.map('map').setView([43.0809, -89.3747], 13);
+    var map = L.map('map').setView([10.782769, 76.660430], 11);
     var hash = new L.Hash(map);
-
-    // Add geocoding plugin
-    var geocoder = L.control.geocoder('search-MKZrG6M').addTo(map);
-
-    // Add Tangram scene layer
-    // (Note: Tangram can also be initialized before the geocoder, if you choose.)
-    var layer = Tangram.leafletLayer({
-      scene: {
-        import: 'https://mapzen.com/carto/cinnabar-style-more-labels/cinnabar-style-more-labels.yaml',
-        global: { sdk_mapzen_api_key: 'search-MKZrG6M' }
-      },
-      attribution: 'Rendering by <a href="https://mapzen.com/tangram">Tangram</a> | &copy; OSM contributors'
+    
+// Add raster tile layer for OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
     }).addTo(map);
   </script>
   <script type="text/javascript">
