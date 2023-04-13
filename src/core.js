@@ -631,6 +631,7 @@ var Geocoder = L.Control.extend({
       this.removeMarkers();
       this.showMarker(selected.innerHTML, latlng);
     }
+    console.log('Selected Location : ' + selected.feature);
     this.fire('select', {
       originalEvent: originalEvent,
       latlng: latlng,
