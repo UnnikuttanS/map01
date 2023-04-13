@@ -587,7 +587,7 @@ var Geocoder = L.Control.extend({
     this._map.setView(latlng, this._map.getZoom() || 8);
 
     var markerOptions = (typeof this.options.markers === 'object') ? this.options.markers : {};
-
+    console.log("uk : "+text)
     if (this.options.markers) {
       var marker = new L.marker(latlng, markerOptions).bindPopup(text); // eslint-disable-line new-cap
       this._map.addLayer(marker);
