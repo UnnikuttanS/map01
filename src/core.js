@@ -621,6 +621,8 @@ var Geocoder = L.Control.extend({
 
   setSelectedResult: function (selected, originalEvent) {
     var latlng = L.GeoJSON.coordsToLatLng(selected.feature.geometry.coordinates);
+    console.log('Selected Location : ' + selected.textContent || selected.innerText);
+    alert('Selected Location : ' + selected.textContent || selected.innerText);
     this._input.value = selected.textContent || selected.innerText;
     var layer = selected.feature.properties.layer;
     // "point" layers (venue and address in Pelias) must always display markers
@@ -631,7 +633,6 @@ var Geocoder = L.Control.extend({
       this.removeMarkers();
       this.showMarker(selected.innerHTML, latlng);
     }
-    console.log('Selected Location : ' + selected.feature);
     this.fire('select', {
       originalEvent: originalEvent,
       latlng: latlng,
